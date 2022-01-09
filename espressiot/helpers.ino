@@ -34,6 +34,8 @@ String statusAsJson() {
   statusObject["heaterPower"] = gOutputPwr;
   statusObject["externalControlMode"] = externalControlMode;
   statusObject["externalButtonState"] = gButtonState;
+  statusObject["boosterEnabled"] = boost_enabled;
+  statusObject["boosterPaused"] = boost_skip;
 
   serializeJson(statusObject, outputString);
   return outputString;

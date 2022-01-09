@@ -27,7 +27,7 @@
 //#define ENABLE_SWITCH_DETECTION
 
 // use simulation or real heater and sensors
-#define SIMULATION_MODE
+//#define SIMULATION_MODE
 
 //
 // STANDARD reset values based on Gaggia CC
@@ -126,6 +126,8 @@ void setup()
   Serial.print("IP address: ");
   Serial.println(WiFi.localIP());
 
+  setupBooster();
+
 #ifdef ENABLE_TELNET
   setupTelnet();
 #endif
@@ -193,9 +195,9 @@ void loop() {
         ESPPID.SetTunings(gP, gI, gD);
         osmode = false;
       }
-      if (ESPPID.Compute() == true) {
-        setHeatPowerPercentage(gOutputPwr);
-      }
+      ESPPID.Compute();
+      loopBooster(gInputTemp);
+      setHeatPowerPercentage(gOutputPwr);
     }
 
     // create status String (JSON)

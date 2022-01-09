@@ -6,6 +6,7 @@
 //
 
 #ifndef SIMULATION_MODE
+#ifdef TEMP_SENSOR_TSIC
 
 #include <TSIC.h>
 
@@ -56,4 +57,5 @@ float getTemp() {
   return retVal;
 }
 
+#endif
 #endif
